@@ -45,7 +45,7 @@ def generate_fixed_width_file(data, spec, output_file):
 def parse_fixed_width_file(input_file, output_file, spec):
     # Open the input_file with 'read' permission, inputfile is an object of input_file
     # Open the output_file with 'write' permission, outputfile is an object of output_file
-    with open(input_file, 'r') as inputfile, open(output_file, 'w', newline='') as outputfile:
+    with open(input_file, 'r', encoding='utf-8') as inputfile, open(output_file, 'w', newline='',encoding='utf-8') as outputfile:
         # Create a CSV writer object to write to the output_file 
         writer = csv.writer(outputfile)
 
