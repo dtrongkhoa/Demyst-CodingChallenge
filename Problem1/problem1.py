@@ -124,7 +124,7 @@ if __name__ == "__main__":
         ("Jane", "Smith", "30"),
         ("Albert", "Einstein", "76"),
         ("Thái", "An", "29"),
-        ("爱", "希望", "190")
+        ("爱", "希望", "102")
     ]
 
     # Sample data with invalid values
