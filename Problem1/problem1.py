@@ -82,7 +82,9 @@ if __name__ == "__main__":
     data = [
         ("John", "Doe", "23"),
         ("Jane", "Smith", "30"),
-        ("Albert", "Einstein", "76")
+        ("Albert", "Einstein", "76"),
+        ("Thái", "An", "29"),
+        ("爱", "希望", "190")
     ]
     
     #Call the function to generate the fixed-width file
