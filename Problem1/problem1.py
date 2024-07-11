@@ -1,8 +1,48 @@
 import csv
 
+#Maximum accepted age
+MAX_AGE = 120
+#Minimum accepted age
+MIN_AGE = 0
+
+# Function to validate the data before processing
+def validate_data(data):
+    valid_data = []
+    invalid_data = []
+
+    for record in data:
+        # parse the data in record
+        first_name, last_name, age = record
+        # Check for null or empty strings
+        if not first_name or not last_name or not age:
+            invalid_data.append(record)
+            continue
+        
+        # Check if age is a valid number and within range
+        try:
+            age = int(age)
+            if age < MIN_AGE or age > MAX_AGE:
+                invalid_data.append(record)
+                continue
+        except ValueError:
+            invalid_data.append(record)
+            continue
+        
+        valid_data.append(record)
+    
+    # Write invalid records to a separate CSV file
+    with open('invalid_data.csv', 'w', newline='') as invalid_file:
+        writer = csv.writer(invalid_file)
+        writer.writerow(['first_name', 'last_name', 'age'])
+        writer.writerows(invalid_data)
+    
+    return valid_data
 
 # Function to generate a fixed-width file according to the "spec"
 def generate_fixed_width_file(data, spec, output_file):
+
+    # Validate the data, only use data that is valid
+    data = validate_data(data)
 
     #An array to store values from data that have combined with fixed-width values
     fixed_width_lines = []
@@ -86,6 +126,16 @@ if __name__ == "__main__":
         ("Thái", "An", "29"),
         ("爱", "希望", "190")
     ]
+
+    # Sample data with invalid values
+    # Uncomment to test it out
+    # data = [
+    #     ("John", "Doe", "23"),
+    #     ("Jane", "Smith", "30"),
+    #     ("Albert", "Einstein", "76"),
+    #     ("", "An", "29"),
+    #     ("爱", "希望", "190"),
+    # ]
     
     #Call the function to generate the fixed-width file
     #Pass the name of the fixed-width file we want into the function
